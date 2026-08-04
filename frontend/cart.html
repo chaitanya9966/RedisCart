@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | RedisCart</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                RedisCart
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="orders.html">Orders</a></li>
+
+                <li>
+
+                    <a href="cart.html" class="active">
+
+                        Cart
+
+                        <span id="cartCount">0</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="cart-header">
+
+        <h1>
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Shopping Cart
+
+        </h1>
+
+        <p>
+
+            Review your selected products before checkout.
+
+        </p>
+
+    </section>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="cart-container">
+
+        <!-- LEFT SIDE -->
+
+        <section class="cart-items">
+
+            <div id="cartItems">
+
+                <!-- JavaScript Loads Cart Here -->
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT SIDE -->
+
+        <aside class="order-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+
+                <span>Total Items</span>
+
+                <span id="summaryItems">0</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">₹0</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <span class="free">FREE</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Tax (18%)</span>
+
+                <span id="tax">₹0</span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-total">
+
+                <span>Total</span>
+
+                <span id="grandTotal">₹0</span>
+
+            </div>
+
+            <button
+                class="checkout-btn"
+                onclick="goToCheckout()">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                Proceed to Checkout
+
+            </button>
+
+            <button
+                class="continue-btn"
+                onclick="window.location.href='products.html'">
+
+                Continue Shopping
+
+            </button>
+
+        </aside>
+
+    </main>
+
+    <!-- ================= EMPTY CART ================= -->
+
+    <div id="emptyCart" class="empty-cart">
+
+    <img src="assets/images/empty-cart.png">
+
+    <h2>Your Cart is Empty</h2>
+
+    <p>Add products to start shopping.</p>
+
+    <a href="products.html" class="btn">
+
+        Shop Now
+
+    </a>
+
+</div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 RedisCart. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+
+</body>
+
+</html>

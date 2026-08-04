@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | RedisCart</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                RedisCart
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="orders.html">Orders</a></li>
+
+                <li>
+
+                    <a href="cart.html">
+
+                        Cart
+
+                        <span id="cartCount">0</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="checkout-header">
+
+        <h1>
+
+            <i class="fa-solid fa-credit-card"></i>
+
+            Secure Checkout
+
+        </h1>
+
+        <p>
+
+            Complete your purchase in just a few steps.
+
+        </p>
+
+    </section>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="checkout-container">
+
+        <!-- LEFT -->
+
+        <section class="checkout-form">
+
+            <h2>
+
+                Customer Information
+
+            </h2>
+
+            <form id="checkoutForm">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@gmail.com"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="+91 9876543210"
+                        required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Delivery Address</label>
+
+                    <textarea
+                        id="address"
+                        rows="5"
+                        placeholder="Enter delivery address"
+                        required></textarea>
+
+                </div>
+
+                <h2>
+
+                    Payment Method
+
+                </h2>
+
+                <div class="payment-method">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Cash On Delivery"
+                            checked>
+
+                        Cash On Delivery
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="UPI">
+
+                        UPI
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Credit Card">
+
+                        Credit / Debit Card
+
+                    </label>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="place-order-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Place Order
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- RIGHT -->
+
+        <aside class="order-summary">
+
+            <h2>
+
+                Order Summary
+
+            </h2>
+
+            <div id="checkoutItems">
+
+                <!-- JavaScript -->
+
+            </div>
+
+            <hr>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="checkoutSubtotal">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <span class="free">
+
+                    FREE
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Tax</span>
+
+                <span id="checkoutTax">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-total">
+
+                <span>Total</span>
+
+                <span id="checkoutTotal">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- ================= SUCCESS MODAL ================= -->
+
+    <div
+        class="success-modal"
+        id="successModal">
+
+        <div class="success-box">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2>
+
+                Order Placed Successfully!
+
+            </h2>
+
+            <p>
+
+                Thank you for shopping with RedisCart.
+
+            </p>
+
+            <button
+                id="continueShopping">
+
+                Continue Shopping
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 RedisCart. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <!-- JS -->
+
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>

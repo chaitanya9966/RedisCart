@@ -1,0 +1,420 @@
+/* ==========================================
+   CHECKOUT HEADER
+========================================== */
+
+.checkout-header{
+    margin-top:100px;
+    padding:60px 20px;
+    text-align:center;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    color:#fff;
+}
+
+.checkout-header h1{
+    font-size:46px;
+    margin-bottom:12px;
+}
+
+.checkout-header p{
+    font-size:18px;
+    opacity:.9;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.checkout-container{
+
+    width:90%;
+    max-width:1400px;
+
+    margin:60px auto;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:35px;
+
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.checkout-form{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.checkout-form h2{
+
+    margin-bottom:25px;
+
+    color:#111827;
+
+}
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.input-group input,
+
+.input-group textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus,
+
+.input-group textarea:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+/* ==========================================
+   PAYMENT
+========================================== */
+
+.payment-method{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin:25px 0;
+
+}
+
+.payment-method label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.payment-method label:hover{
+
+    background:#edf4ff;
+
+}
+
+.payment-method input{
+
+    accent-color:#2563EB;
+
+}
+
+/* ==========================================
+   PLACE ORDER BUTTON
+========================================== */
+
+.place-order-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:16px;
+
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+    color:white;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.place-order-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.30);
+
+}
+
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.order-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:110px;
+
+    height:fit-content;
+
+}
+
+.order-summary h2{
+
+    margin-bottom:25px;
+
+}
+
+.checkout-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+    color:#374151;
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:18px 0;
+
+    color:#4B5563;
+
+}
+
+.summary-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.free{
+
+    color:#10B981;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   SUCCESS MODAL
+========================================== */
+
+.success-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.6);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.success-box{
+
+    background:white;
+
+    padding:45px;
+
+    width:90%;
+
+    max-width:500px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    animation:popup .35s ease;
+
+}
+
+.success-box i{
+
+    font-size:80px;
+
+    color:#10B981;
+
+    margin-bottom:20px;
+
+}
+
+.success-box h2{
+
+    margin-bottom:15px;
+
+}
+
+.success-box p{
+
+    color:#6B7280;
+
+    margin-bottom:30px;
+
+}
+
+.success-box button{
+
+    border:none;
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:15px 35px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+.success-box button:hover{
+
+    background:#1d4ed8;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .checkout-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .order-summary{
+
+        position:static;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .checkout-header h1{
+
+        font-size:34px;
+
+    }
+
+    .checkout-form{
+
+        padding:25px;
+
+    }
+
+    .order-summary{
+
+        padding:25px;
+
+    }
+
+}

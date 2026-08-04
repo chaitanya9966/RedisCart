@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "MacBook Pro M4",
+    "category": "Laptop",
+    "badge": "BEST SELLER",
+    "description": "Apple M4 chip with stunning Retina display.",
+    "rating": 5,
+    "oldPrice": 199999,
+    "price": 189999,
+    "image": "assets/images/macbook.png"
+  },
+  {
+    "id": 2,
+    "name": "Dell XPS 15",
+    "category": "Laptop",
+    "badge": "NEW",
+    "description": "Powerful Windows laptop for professionals.",
+    "rating": 5,
+    "oldPrice": 159999,
+    "price": 149999,
+    "image": "assets/images/dell.png"
+  },
+  {
+    "id": 3,
+    "name": "iPhone 16 Pro",
+    "category": "Mobile",
+    "badge": "HOT",
+    "description": "Apple's latest flagship smartphone.",
+    "rating": 5,
+    "oldPrice": 149999,
+    "price": 139999,
+    "image": "assets/images/iphone.png"
+  },
+  {
+    "id": 4,
+    "name": "Samsung Galaxy S26",
+    "category": "Mobile",
+    "badge": "SALE",
+    "description": "Premium Android smartphone with AI features.",
+    "rating": 5,
+    "oldPrice": 119999,
+    "price": 109999,
+    "image": "assets/images/samsung.png"
+  },
+  {
+    "id": 5,
+    "name": "Sony WH-1000XM6",
+    "category": "Accessory",
+    "badge": "HOT",
+    "description": "Industry-leading noise cancelling headphones.",
+    "rating": 5,
+    "oldPrice": 34999,
+    "price": 29999,
+    "image": "assets/images/headphone.png"
+  },
+  {
+    "id": 6,
+    "name": "PlayStation 5",
+    "category": "Gaming",
+    "badge": "BEST SELLER",
+    "description": "Next-generation gaming console from Sony.",
+    "rating": 5,
+    "oldPrice": 59999,
+    "price": 54999,
+    "image": "assets/images/ps5.png"
+  }
+
+  ,
+{
+  "id": 7,
+  "name": "Xbox Series X",
+  "category": "Gaming",
+  "badge": "HOT",
+  "description": "Microsoft's powerful next-generation gaming console.",
+  "rating": 5,
+  "oldPrice": 57999,
+  "price": 54999,
+  "image": "assets/images/xbox.png"
+},
+{
+  "id": 8,
+  "name": "Apple iPad Pro M4",
+  "category": "Tablet",
+  "badge": "NEW",
+  "description": "Ultra-thin iPad with Apple M4 chip.",
+  "rating": 5,
+  "oldPrice": 119999,
+  "price": 109999,
+  "image": "assets/images/ipad.png"
+},
+{
+  "id": 9,
+  "name": "Apple AirPods Pro 2",
+  "category": "Accessory",
+  "badge": "BEST SELLER",
+  "description": "Active Noise Cancellation with Spatial Audio.",
+  "rating": 5,
+  "oldPrice": 27999,
+  "price": 24999,
+  "image": "assets/images/airpods.png"
+},
+{
+  "id": 10,
+  "name": "Logitech MX Master 3S",
+  "category": "Accessory",
+  "badge": "SALE",
+  "description": "Premium wireless productivity mouse.",
+  "rating": 5,
+  "oldPrice": 10999,
+  "price": 9499,
+  "image": "assets/images/mouse.png"
+},
+{
+  "id": 11,
+  "name": "Keychron K8 RGB",
+  "category": "Accessory",
+  "badge": "HOT",
+  "description": "Wireless mechanical keyboard with RGB lighting.",
+  "rating": 5,
+  "oldPrice": 9999,
+  "price": 8499,
+  "image": "assets/images/keyboard.png"
+}
+
+]
+
+
