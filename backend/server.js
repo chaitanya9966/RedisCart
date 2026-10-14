@@ -3,9 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import productRoutes from "./routes/productRoutes.js";
+
 import cartRoutes from "./routes/cartRoutes.js";
 
 import orderRoutes from "./routes/orderRoutes.js";
+
+import setupRoutes from "./routes/setupRoutes.js";
 
 import "./redis.js";
 
@@ -22,6 +25,8 @@ app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
 
 app.use("/orders", orderRoutes);
+
+app.use("/setup", setupRoutes);
 
 app.get("/", (req, res) => {
 
