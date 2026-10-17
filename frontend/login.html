@@ -1,160 +1,850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | RedisCart</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      font-family: Arial, sans-serif; background: #111827; color: #fff;
-      padding: 20px;
-    }
-    .card {
-      width: 100%; max-width: 420px; padding: 32px;
-      background: #1f2937; border-radius: 18px;
-      box-shadow: 0 20px 60px #0005;
-    }
-    h1 { margin-top: 0; }
-    .accent { color: #a3e635; }
-    p { color: #cbd5e1; }
-    label { display: block; margin: 16px 0 7px; }
-    input {
-      width: 100%; padding: 13px; border-radius: 8px;
-      border: 1px solid #475569; background: #111827;
-      color: white; font-size: 16px;
-    }
-    button {
-      width: 100%; margin-top: 16px; padding: 13px;
-      border: 0; border-radius: 8px; cursor: pointer;
-      font-weight: bold; font-size: 15px;
-    }
-    .primary { background: #a3e635; color: #111827; }
-    .secondary { background: #374151; color: white; }
-    #message { overflow-wrap: anywhere; }
-    a { color: #a3e635; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | RedisCart</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2864f0;
+            --primary-dark: #174bd1;
+            --background: #f4f7fc;
+            --text: #151b2d;
+            --muted: #718096;
+            --border: #e2e8f0;
+            --white: #ffffff;
+            --success: #15803d;
+            --error: #dc2626;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            height: 82px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .logo {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            margin-right: 8px;
+        }
+
+        .header-text {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 45px 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 570px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 70px rgba(29, 55, 100, 0.09);
+        }
+
+        .welcome-panel {
+            background: linear-gradient(145deg, #2864f0, #1742bc);
+            color: var(--white);
+            padding: 55px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-panel::before,
+        .welcome-panel::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+        }
+
+        .welcome-panel::before {
+            width: 300px;
+            height: 300px;
+            top: -120px;
+            right: -100px;
+        }
+
+        .welcome-panel::after {
+            width: 250px;
+            height: 250px;
+            bottom: -130px;
+            left: -100px;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-panel h1 {
+            font-size: 36px;
+            line-height: 1.3;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+        }
+
+        .welcome-panel p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 32px;
+        }
+
+        .features li {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .features li span {
+            display: inline-flex;
+            width: 24px;
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin-right: 10px;
+        }
+
+        .form-panel {
+            padding: 48px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-panel h2 {
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 27px;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 5px;
+            background: #f0f3f9;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            padding: 11px;
+            border: none;
+            border-radius: 9px;
+            background: transparent;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab.active {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0 14px;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(40, 100, 240, 0.1);
+        }
+
+        .password-input {
+            padding-right: 75px !important;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .forgot-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -5px;
+            margin-bottom: 19px;
+        }
+
+        .text-button {
+            color: var(--primary);
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .primary-button {
+            width: 100%;
+            height: 49px;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(40, 100, 240, 0.2);
+            transition: 0.2s;
+        }
+
+        .primary-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .primary-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            display: none;
+            padding: 11px 13px;
+            margin-bottom: 17px;
+            border-radius: 9px;
+            font-size: 12px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .message.error {
+            display: block;
+            color: var(--error);
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .message.success {
+            display: block;
+            color: var(--success);
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .security-note {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        @media (max-width: 760px) {
+            header {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .header-text {
+                font-size: 11px;
+            }
+
+            main {
+                padding: 25px 14px;
+            }
+
+            .auth-container {
+                max-width: 460px;
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-panel {
+                padding: 27px;
+            }
+
+            .welcome-icon {
+                font-size: 38px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-panel h1 {
+                font-size: 27px;
+            }
+
+            .welcome-panel p {
+                font-size: 12px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 32px 25px;
+            }
+
+            .form-panel h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <main class="card">
-    <h1><span class="accent">Redis</span>Cart</h1>
-    <p>Sign in or create an account to continue.</p>
 
-    <form id="auth-form">
-      <label for="email">Email address</label>
-      <input id="email" type="email" autocomplete="email" required>
+<header>
+    <a class="logo" href="login.html"><span>🛒</span>RedisCart</a>
+    <div class="header-text">Your smarter shopping experience</div>
+</header>
 
-      <label for="password">Password</label>
-      <input id="password" type="password"
-             autocomplete="current-password" minlength="6" required>
+<main>
+    <section class="auth-container">
 
-      <button class="primary" type="submit" id="login-btn">Log In</button>
-    </form>
+        <div class="welcome-panel">
+            <div class="welcome-content">
+                <div class="welcome-icon">🛍️</div>
 
-    <button class="secondary" id="register-btn" type="button">
-      Create Account
-    </button>
-    <button class="secondary" id="logout-btn" type="button" hidden>
-      Log Out
-    </button>
+                <h1>Shop Smarter.<br>Shop Faster.</h1>
 
-    <p id="message" role="status" aria-live="polite"></p>
-    <p><a href="./index.html">← Back to shopping</a></p>
-  </main>
+                <p>
+                    Welcome to RedisCart! Sign in to explore premium
+                    gadgets and accessories, manage your cart, and
+                    enjoy a smoother shopping experience.
+                </p>
 
-  <script type="module">
+                <ul class="features">
+                    <li><span>✓</span> Discover premium products</li>
+                    <li><span>✓</span> Keep track of your shopping cart</li>
+                    <li><span>✓</span> View your order history</li>
+                    <li><span>✓</span> Enjoy a simple shopping experience</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-panel">
+            <h2 id="formTitle">Welcome Back!</h2>
+
+            <p class="subtitle" id="formSubtitle">
+                Enter your details to access your account.
+            </p>
+
+            <div class="tabs">
+                <button type="button" class="tab active" id="loginTab">
+                    Login
+                </button>
+
+                <button type="button" class="tab" id="registerTab">
+                    Register
+                </button>
+            </div>
+
+            <div id="message" class="message" role="alert" aria-live="polite"></div>
+
+            <form id="authForm">
+
+                <div class="form-group" id="nameGroup" hidden>
+                    <label for="fullName">Full Name</label>
+                    <div class="input-wrap">
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrap">
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrap">
+                        <input
+                            type="password"
+                            id="password"
+                            class="password-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                        >
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group" id="confirmGroup" hidden>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrap">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            class="password-input"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            minlength="6"
+                        >
+                    </div>
+                </div>
+
+                <div class="forgot-row" id="forgotRow">
+                    <button type="button" class="text-button" id="forgotButton">
+                        Forgot password?
+                    </button>
+                </div>
+
+                <button type="submit" class="primary-button" id="submitButton">
+                    Login to RedisCart
+                </button>
+
+            </form>
+
+            <div class="security-note">
+                🔒 Authentication secured with Firebase
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    © 2026 RedisCart. Shop smarter, shop faster.
+</footer>
+
+<script type="module">
     import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-    import {
-      getAuth, createUserWithEmailAndPassword,
-      signInWithEmailAndPassword, signOut, onAuthStateChanged
-    } from
-      "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+        "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        updateProfile,
+        sendPasswordResetEmail,
+        signOut
+    } from
+        "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+    // Your existing Firebase project configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyD8DiBJm0OEP0tgk2-S6WA5b8d751DQH7g",
-      authDomain: "rediscart.firebaseapp.com",
-      projectId: "rediscart",
-      storageBucket: "rediscart.firebasestorage.app",
-      messagingSenderId: "330105473511",
-      appId: "1:330105473511:web:b5edb9b6124675c9fd5542",
-      measurementId: "G-807RWRGVQZ"
+        apiKey: "AIzaSyD8DiBJm0OEP0tgk2-SWA5b8d751DQH7g",
+        authDomain: "rediscart.firebaseapp.com",
+        projectId: "rediscart",
+        storageBucket: "rediscart.firebasestorage.app",
+        messagingSenderId: "330105473511",
+        appId: "1:330105473511:web:b5edb9b6124675c9fd5542",
+        measurementId: "G-807RWRGVQZ"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    const form = document.getElementById("auth-form");
+    const authForm = document.getElementById("authForm");
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const formTitle = document.getElementById("formTitle");
+    const formSubtitle = document.getElementById("formSubtitle");
+    const nameGroup = document.getElementById("nameGroup");
+    const confirmGroup = document.getElementById("confirmGroup");
+    const fullName = document.getElementById("fullName");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const forgotRow = document.getElementById("forgotRow");
+    const forgotButton = document.getElementById("forgotButton");
+    const submitButton = document.getElementById("submitButton");
     const message = document.getElementById("message");
-    const loginBtn = document.getElementById("login-btn");
-    const registerBtn = document.getElementById("register-btn");
-    const logoutBtn = document.getElementById("logout-btn");
+    const togglePassword = document.getElementById("togglePassword");
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      loginBtn.disabled = true;
-      message.textContent = "Signing in...";
+    let currentMode = "login";
+    let isSubmitting = false;
 
-      try {
-        await signInWithEmailAndPassword(
-          auth, email.value.trim(), password.value
-        );
-        message.textContent = "Login successful! Redirecting...";
-        window.location.href = "./index.html";
-      } catch (error) {
-        message.textContent = friendlyError(error.code);
-      } finally {
-        loginBtn.disabled = false;
-      }
-    });
+    // Only allow redirects to pages on this same website.
+    // This avoids unsafe external redirect URLs.
+    const params = new URLSearchParams(window.location.search);
+    const requestedPage = params.get("redirect");
 
-    registerBtn.addEventListener("click", async () => {
-      registerBtn.disabled = true;
-      message.textContent = "Creating account...";
+    const allowedPages = [
+        "index.html",
+        "products.html",
+        "cart.html",
+        "checkout.html",
+        "orders.html",
+        "setup.html"
+    ];
 
-      try {
-        await createUserWithEmailAndPassword(
-          auth, email.value.trim(), password.value
-        );
-        message.textContent = "Account created! Redirecting...";
-        window.location.href = "./index.html";
-      } catch (error) {
-        message.textContent = friendlyError(error.code);
-      } finally {
-        registerBtn.disabled = false;
-      }
-    });
+    const destination =
+        requestedPage && allowedPages.includes(requestedPage)
+            ? requestedPage
+            : "index.html";
 
-    logoutBtn.addEventListener("click", async () => {
-      try {
-        await signOut(auth);
-        message.textContent = "You have been logged out.";
-      } catch {
-        message.textContent = "Could not log out. Please try again.";
-      }
-    });
-
-    onAuthStateChanged(auth, (user) => {
-      logoutBtn.hidden = !user;
-      if (user) {
-        message.textContent = "Signed in as " + user.email;
-      }
-    });
-
-    function friendlyError(code) {
-      const errors = {
-        "auth/invalid-email": "Enter a valid email address.",
-        "auth/invalid-credential": "Email or password is incorrect.",
-        "auth/email-already-in-use": "This email is already registered.",
-        "auth/weak-password": "Use a password with at least 6 characters.",
-        "auth/operation-not-allowed": "Enable Email/Password in Firebase Authentication.",
-        "auth/too-many-requests": "Too many attempts. Try again later."
-      };
-      return errors[code] || "Authentication failed: " + code;
+    function showMessage(text, type = "error") {
+        message.textContent = text;
+        message.className = `message ${type}`;
     }
-  </script>
+
+    function clearMessage() {
+        message.textContent = "";
+        message.className = "message";
+    }
+
+    function setLoading(loading, label = "") {
+        submitButton.disabled = loading;
+
+        if (loading) {
+            submitButton.textContent = label || "Please wait...";
+        } else {
+            submitButton.textContent =
+                currentMode === "login"
+                    ? "Login to RedisCart"
+                    : "Create Account";
+        }
+    }
+
+    function friendlyError(error) {
+        const code = error?.code || "";
+
+        const errors = {
+            "auth/invalid-email":
+                "Please enter a valid email address.",
+
+            "auth/user-not-found":
+                "No account was found with this email. Please register first.",
+
+            "auth/wrong-password":
+                "Incorrect email or password. Please try again.",
+
+            "auth/invalid-credential":
+                "Incorrect email or password. Check your details or register.",
+
+            "auth/email-already-in-use":
+                "This email is already registered. Please log in instead.",
+
+            "auth/weak-password":
+                "Your password must contain at least 6 characters.",
+
+            "auth/too-many-requests":
+                "Too many attempts. Please wait a while and try again.",
+
+            "auth/network-request-failed":
+                "Network error. Check your internet connection and try again.",
+
+            "auth/operation-not-allowed":
+                "Email/password login is disabled. Enable it in Firebase Authentication settings.",
+
+            "auth/unauthorized-domain":
+                "This website domain is not authorized in Firebase. Add your Vercel domain under Authentication settings.",
+
+            "auth/missing-password":
+                "Please enter your password."
+        };
+
+        return errors[code] ||
+            error?.message?.replace("Firebase: ", "") ||
+            "Something went wrong. Please try again.";
+    }
+
+    function setMode(mode) {
+        currentMode = mode;
+
+        clearMessage();
+
+        const isRegister = mode === "register";
+
+        loginTab.classList.toggle("active", !isRegister);
+        registerTab.classList.toggle("active", isRegister);
+
+        nameGroup.hidden = !isRegister;
+        confirmGroup.hidden = !isRegister;
+        forgotRow.hidden = isRegister;
+
+        fullName.required = isRegister;
+        confirmPassword.required = isRegister;
+
+        password.autocomplete =
+            isRegister ? "new-password" : "current-password";
+
+        formTitle.textContent =
+            isRegister ? "Create Account" : "Welcome Back!";
+
+        formSubtitle.textContent =
+            isRegister
+                ? "Create your account to start shopping."
+                : "Enter your details to access your account.";
+
+        setLoading(false);
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    registerTab.addEventListener("click", () => setMode("register"));
+
+    togglePassword.addEventListener("click", () => {
+        const showing = password.type === "text";
+
+        password.type = showing ? "password" : "text";
+        togglePassword.textContent = showing ? "Show" : "Hide";
+    });
+
+    // If the user already has a valid Firebase session,
+    // send them directly to the requested page.
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            try {
+                await user.getIdToken();
+                window.location.replace(destination);
+            } catch (error) {
+                console.error("Unable to verify login session:", error);
+                await signOut(auth);
+            }
+        }
+    });
+
+    authForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (isSubmitting) return;
+
+        clearMessage();
+
+        const userEmail = email.value.trim();
+        const userPassword = password.value;
+
+        if (!userEmail || !userPassword) {
+            showMessage("Please enter your email and password.");
+            return;
+        }
+
+        if (currentMode === "register") {
+            if (!fullName.value.trim()) {
+                showMessage("Please enter your full name.");
+                fullName.focus();
+                return;
+            }
+
+            if (userPassword.length < 6) {
+                showMessage("Your password must contain at least 6 characters.");
+                password.focus();
+                return;
+            }
+
+            if (userPassword !== confirmPassword.value) {
+                showMessage("The passwords do not match.");
+                confirmPassword.focus();
+                return;
+            }
+        }
+
+        isSubmitting = true;
+
+        try {
+            setLoading(
+                true,
+                currentMode === "login"
+                    ? "Signing in..."
+                    : "Creating account..."
+            );
+
+            if (currentMode === "register") {
+                const credential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        userEmail,
+                        userPassword
+                    );
+
+                await updateProfile(credential.user, {
+                    displayName: fullName.value.trim()
+                });
+
+                // Ensure the user has a Firebase ID token
+                // before proceeding to the shopping website.
+                await credential.user.getIdToken();
+
+                showMessage(
+                    "Account created successfully! Opening RedisCart...",
+                    "success"
+                );
+
+                window.location.replace(destination);
+            } else {
+                const credential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        userEmail,
+                        userPassword
+                    );
+
+                await credential.user.getIdToken();
+
+                showMessage(
+                    "Login successful! Opening RedisCart...",
+                    "success"
+                );
+
+                window.location.replace(destination);
+            }
+        } catch (error) {
+            console.error("Authentication error:", error);
+            showMessage(friendlyError(error));
+        } finally {
+            isSubmitting = false;
+            setLoading(false);
+        }
+    });
+
+    forgotButton.addEventListener("click", async () => {
+        clearMessage();
+
+        const userEmail = email.value.trim();
+
+        if (!userEmail) {
+            showMessage("Enter your email address first.");
+            email.focus();
+            return;
+        }
+
+        try {
+            forgotButton.disabled = true;
+
+            await sendPasswordResetEmail(auth, userEmail);
+
+            showMessage(
+                "If an account exists for this email, a password reset email will be sent.",
+                "success"
+            );
+        } catch (error) {
+            console.error("Password reset error:", error);
+            showMessage(friendlyError(error));
+        } finally {
+            forgotButton.disabled = false;
+        }
+    });
+
+    // Default screen
+    setMode("login");
+</script>
+
 </body>
 </html>
