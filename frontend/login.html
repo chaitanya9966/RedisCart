@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | RedisCart</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      font-family: Arial, sans-serif; background: #111827; color: #fff;
+      padding: 20px;
+    }
+    .card {
+      width: 100%; max-width: 420px; padding: 32px;
+      background: #1f2937; border-radius: 18px;
+      box-shadow: 0 20px 60px #0005;
+    }
+    h1 { margin-top: 0; }
+    .accent { color: #a3e635; }
+    p { color: #cbd5e1; }
+    label { display: block; margin: 16px 0 7px; }
+    input {
+      width: 100%; padding: 13px; border-radius: 8px;
+      border: 1px solid #475569; background: #111827;
+      color: white; font-size: 16px;
+    }
+    button {
+      width: 100%; margin-top: 16px; padding: 13px;
+      border: 0; border-radius: 8px; cursor: pointer;
+      font-weight: bold; font-size: 15px;
+    }
+    .primary { background: #a3e635; color: #111827; }
+    .secondary { background: #374151; color: white; }
+    #message { overflow-wrap: anywhere; }
+    a { color: #a3e635; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1><span class="accent">Redis</span>Cart</h1>
+    <p>Sign in or create an account to continue.</p>
+
+    <form id="auth-form">
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             autocomplete="current-password" minlength="6" required>
+
+      <button class="primary" type="submit" id="login-btn">Log In</button>
+    </form>
+
+    <button class="secondary" id="register-btn" type="button">
+      Create Account
+    </button>
+    <button class="secondary" id="logout-btn" type="button" hidden>
+      Log Out
+    </button>
+
+    <p id="message" role="status" aria-live="polite"></p>
+    <p><a href="./index.html">← Back to shopping</a></p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import {
+      getAuth, createUserWithEmailAndPassword,
+      signInWithEmailAndPassword, signOut, onAuthStateChanged
+    } from
+      "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8DiBJm0OEP0tgk2-S6WA5b8d751DQH7g",
+      authDomain: "rediscart.firebaseapp.com",
+      projectId: "rediscart",
+      storageBucket: "rediscart.firebasestorage.app",
+      messagingSenderId: "330105473511",
+      appId: "1:330105473511:web:b5edb9b6124675c9fd5542",
+      measurementId: "G-807RWRGVQZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("auth-form");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const message = document.getElementById("message");
+    const loginBtn = document.getElementById("login-btn");
+    const registerBtn = document.getElementById("register-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      loginBtn.disabled = true;
+      message.textContent = "Signing in...";
+
+      try {
+        await signInWithEmailAndPassword(
+          auth, email.value.trim(), password.value
+        );
+        message.textContent = "Login successful! Redirecting...";
+        window.location.href = "./index.html";
+      } catch (error) {
+        message.textContent = friendlyError(error.code);
+      } finally {
+        loginBtn.disabled = false;
+      }
+    });
+
+    registerBtn.addEventListener("click", async () => {
+      registerBtn.disabled = true;
+      message.textContent = "Creating account...";
+
+      try {
+        await createUserWithEmailAndPassword(
+          auth, email.value.trim(), password.value
+        );
+        message.textContent = "Account created! Redirecting...";
+        window.location.href = "./index.html";
+      } catch (error) {
+        message.textContent = friendlyError(error.code);
+      } finally {
+        registerBtn.disabled = false;
+      }
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        message.textContent = "You have been logged out.";
+      } catch {
+        message.textContent = "Could not log out. Please try again.";
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      logoutBtn.hidden = !user;
+      if (user) {
+        message.textContent = "Signed in as " + user.email;
+      }
+    });
+
+    function friendlyError(code) {
+      const errors = {
+        "auth/invalid-email": "Enter a valid email address.",
+        "auth/invalid-credential": "Email or password is incorrect.",
+        "auth/email-already-in-use": "This email is already registered.",
+        "auth/weak-password": "Use a password with at least 6 characters.",
+        "auth/operation-not-allowed": "Enable Email/Password in Firebase Authentication.",
+        "auth/too-many-requests": "Too many attempts. Try again later."
+      };
+      return errors[code] || "Authentication failed: " + code;
+    }
+  </script>
+</body>
+</html>
